@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+
+{% block title %}{{ title }}{% endblock %}
+
+{% block content %}
+<div class="row mb-4">
+    <div class="col">
+        <h2>{{ title }}</h2>
+    </div>
+    <div class="col-auto">
+        <a href="{% url 'main:dictionary_list' %}" class="btn btn-outline-secondary">
+            <i class="fas fa-arrow-left"></i> Вернуться к словарям
+        </a>
+    </div>
+</div>
+
+<div class="card">
+    <div class="card-body">
+        <h5 class="card-title text-danger">Вы уверены, что хотите удалить «{{ object }}»?</h5>
+        <div class="alert alert-warning">
+            <p>Это действие не может быть отменено! Если есть какие-либо записи о движении денежных средств или зависимые элементы, использующие эту запись, удаление может не произойти.</p>
+        </div>
+        
+        <form method="post">
+            {% csrf_token %}
+            <div class="row">
+                <div class="col-12">
+                    <button type="submit" class="btn btn-danger">Подтвердить удаление</button>
+                    <a href="{% url 'main:dictionary_list' %}" class="btn btn-outline-secondary">Отмена</a>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+{% endblock %}

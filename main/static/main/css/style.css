@@ -1,0 +1,42 @@
+/* Custom CSS for Cash Flow Management System */
+
+/* Body styles */
+body {
+    background-color: #f8f9fa;
+}
+
+/* Card styling */
+.card {
+    box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075);
+    margin-bottom: 1.5rem;
+}
+
+.card-header {
+    font-weight: 500;
+}
+
+/* Table styling */
+.table th {
+    background-color: #343a40;
+    color: white;
+}
+
+.table-hover tbody tr:hover {
+    background-color: rgba(0, 123, 255, 0.075);
+}
+
+/* Form styling */
+.form-label {
+    font-weight: 500;
+}
+
+/* Button styling */
+.btn-group-sm > .btn {
+    padding: 0.25rem 0.5rem;
+}
+
+/* Alert styling */
+.alert {
+    margin-bottom: 1.5rem;
+}
+

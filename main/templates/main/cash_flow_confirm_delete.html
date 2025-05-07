@@ -1,0 +1,72 @@
+{% extends 'base.html' %}
+
+{% block title %}Удалить запись о движении денежных средств{% endblock %}
+
+{% block content %}
+<div class="row mb-4">
+    <div class="col">
+        <h2>Удалить запись о движении денежных средств</h2>
+    </div>
+    <div class="col-auto">
+        <a href="{% url 'main:index' %}" class="btn btn-outline-secondary">
+            <i class="fas fa-arrow-left"></i> Вернуться к списку
+        </a>
+    </div>
+</div>
+
+<div class="card">
+    <div class="card-body">
+        <h5 class="card-title text-danger">Вы уверены, что хотите удалить эту запись о движении денежных средств?</h5>
+        <div class="alert alert-warning">
+            <p>Это действие не может быть отменено!</p>
+        </div>
+        
+        <div class="row mb-4">
+            <div class="col-md-6">
+                <table class="table table-bordered">
+                    <tbody>
+                        <tr>
+                            <th>Дата</th>
+                            <td>{{ cash_flow.date|date:"d.m.Y" }}</td>
+                        </tr>
+                        <tr>
+                            <th>Статус</th>
+                            <td>{{ cash_flow.status.name }}</td>
+                        </tr>
+                        <tr>
+                            <th>Тип</th>
+                            <td>{{ cash_flow.type.name }}</td>
+                        </tr>
+                        <tr>
+                            <th>Категория</th>
+                            <td>{{ cash_flow.category.name }}</td>
+                        </tr>
+                        <tr>
+                            <th>Подкатегория</th>
+                            <td>{{ cash_flow.subcategory.name }}</td>
+                        </tr>
+                        <tr>
+                            <th>Количество</th>
+                            <td>{{ cash_flow.amount|floatformat:2 }} ₽</td>
+                        </tr>
+                        <tr>
+                            <th>Комментарий</th>
+                            <td>{{ cash_flow.comment|default:"-" }}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        
+        <form method="post">
+            {% csrf_token %}
+            <div class="row">
+                <div class="col-12">
+                    <button type="submit" class="btn btn-danger">Подтвердить удаление</button>
+                    <a href="{% url 'main:index' %}" class="btn btn-outline-secondary">Отмена</a>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+{% endblock %}
