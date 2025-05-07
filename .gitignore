@@ -1,4 +1,3 @@
- Python cache
 __pycache__/
 *.py[cod]
 
@@ -7,7 +6,6 @@ __pycache__/
 */migrations/*.pyc
 */migrations/__init__.py
 
- Local development environment
 .env
 *.sqlite3
 
@@ -16,25 +14,19 @@ __pycache__/
 *.egg-info/
 *.egg
 
- Static files
 /static/
 media/
 
- IDE and editor files
 .vscode/
 .idea/
 *.swp
 
- OS generated files
 .DS_Store
 Thumbs.db
 
- Coverage reports
 htmlcov/
 .coverage
 
- Log files
 *.log
 
- Jupyter Notebook
 .ipynb_checkpoints
