@@ -1,5 +1,10 @@
 # Управление Денежными Потоками
 
+<img width="1440" alt="image" src="https://github.com/user-attachments/assets/b0e4f902-a82a-41ab-89fb-6be1b1db32b7" />
+<img width="1440" alt="image" src="https://github.com/user-attachments/assets/1566a79f-b206-48e2-bdc4-e5a92199d829" />
+<img width="1440" alt="image" src="https://github.com/user-attachments/assets/0dba7e7f-3d8a-4af9-a9bd-0b058bb58c0a" />
+<img width="1440" alt="image" src="https://github.com/user-attachments/assets/6b8c19a8-b2c9-4107-95b4-d002f1cfadef" />
+
 **Управление Денежными Потоками** — это веб-приложение на Django, предназначенное для помощи пользователям в отслеживании доходов и расходов. Оно предоставляет структурированный способ записи финансовых транзакций, их категоризации и фильтрации для анализа. Приложение использует динамические формы для улучшенного пользовательского опыта.
 
 ## Возможности
