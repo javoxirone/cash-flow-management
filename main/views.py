@@ -8,6 +8,8 @@ from .forms import (
 
 
 def index(request):
+    """Отображает список записей о движении денежных средств, с возможностью фильтрации по дате, статусу, типу, категории и подкатегории."""
+
     cash_flows = CashFlow.objects.all().order_by('-date')
 
     filter_form = CashFlowFilterForm(request.GET)
@@ -33,6 +35,8 @@ def index(request):
 
 
 def cash_flow_create(request):
+    """Обрабатывает создание новой записи о движении денежных средств через форму."""
+
     if request.method == 'POST':
         form = CashFlowForm(request.POST)
         if form.is_valid():
@@ -49,6 +53,8 @@ def cash_flow_create(request):
 
 
 def cash_flow_update(request, pk):
+    """Обрабатывает обновление существующей записи о движении денежных средств."""
+
     cash_flow = get_object_or_404(CashFlow, pk=pk)
 
     if request.method == 'POST':
@@ -67,6 +73,8 @@ def cash_flow_update(request, pk):
 
 
 def cash_flow_delete(request, pk):
+    """Обрабатывает удаление записи о движении денежных средств после подтверждения пользователя."""
+
     cash_flow = get_object_or_404(CashFlow, pk=pk)
 
     if request.method == 'POST':
@@ -80,6 +88,8 @@ def cash_flow_delete(request, pk):
 
 
 def dictionary_list(request):
+    """Отображает все словарные сущности: статусы, типы, категории и подкатегории."""
+
     statuses = Status.objects.all()
     types = Type.objects.all()
     categories = Category.objects.all()
@@ -94,6 +104,8 @@ def dictionary_list(request):
 
 
 def status_create(request):
+    """Обрабатывает создание новой записи словаря "Статус"."""
+
     if request.method == 'POST':
         form = StatusForm(request.POST)
         if form.is_valid():
@@ -110,6 +122,8 @@ def status_create(request):
 
 
 def status_update(request, pk):
+    """Обрабатывает обновление записи словаря "Статус"."""
+
     status = get_object_or_404(Status, pk=pk)
 
     if request.method == 'POST':
@@ -128,6 +142,8 @@ def status_update(request, pk):
 
 
 def status_delete(request, pk):
+    """Обрабатывает удаление записи словаря "Статус", отображая ошибки, если удаление невозможно из-за ограничений."""
+
     status = get_object_or_404(Status, pk=pk)
 
     if request.method == 'POST':
@@ -145,6 +161,8 @@ def status_delete(request, pk):
 
 
 def type_create(request):
+    """Обрабатывает создание новой записи словаря "Тип"."""
+
     if request.method == 'POST':
         form = TypeForm(request.POST)
         if form.is_valid():
@@ -161,6 +179,8 @@ def type_create(request):
 
 
 def type_update(request, pk):
+    """Обрабатывает обновление записи словаря "Тип"."""
+
     type_obj = get_object_or_404(Type, pk=pk)
 
     if request.method == 'POST':
@@ -179,6 +199,8 @@ def type_update(request, pk):
 
 
 def type_delete(request, pk):
+    """Обрабатывает удаление записи словаря "Тип", отображая ошибки, если удаление невозможно."""
+
     type_obj = get_object_or_404(Type, pk=pk)
 
     if request.method == 'POST':
@@ -196,6 +218,8 @@ def type_delete(request, pk):
 
 
 def category_create(request):
+    """Обрабатывает создание новой записи словаря "Категория"."""
+
     if request.method == 'POST':
         form = CategoryForm(request.POST)
         if form.is_valid():
@@ -212,6 +236,8 @@ def category_create(request):
 
 
 def category_update(request, pk):
+    """Обрабатывает обновление записи словаря "Категория"."""
+
     category = get_object_or_404(Category, pk=pk)
 
     if request.method == 'POST':
@@ -230,6 +256,8 @@ def category_update(request, pk):
 
 
 def category_delete(request, pk):
+    """Обрабатывает удаление записи словаря "Категория", отображая ошибки, если удаление невозможно."""
+
     category = get_object_or_404(Category, pk=pk)
 
     if request.method == 'POST':
@@ -247,6 +275,8 @@ def category_delete(request, pk):
 
 
 def subcategory_create(request):
+    """Обрабатывает создание новой записи словаря "Подкатегория"."""
+
     if request.method == 'POST':
         form = SubcategoryForm(request.POST)
         if form.is_valid():
@@ -263,6 +293,8 @@ def subcategory_create(request):
 
 
 def subcategory_update(request, pk):
+    """Обновляет существующую подкатегорию."""
+
     subcategory = get_object_or_404(Subcategory, pk=pk)
 
     if request.method == 'POST':
@@ -281,6 +313,8 @@ def subcategory_update(request, pk):
 
 
 def subcategory_delete(request, pk):
+    """Удаляет подкатегорию."""
+
     subcategory = get_object_or_404(Subcategory, pk=pk)
 
     if request.method == 'POST':
@@ -299,12 +333,22 @@ def subcategory_delete(request, pk):
 
 # AJAX views for dynamic forms
 def get_categories_by_type(request):
+    """
+    Возвращает список категорий по заданному типу (type_id).
+    Используется для динамического обновления формы через AJAX.
+    """
+
     type_id = request.GET.get('type_id')
     categories = Category.objects.filter(type_id=type_id).values('id', 'name')
     return JsonResponse(list(categories), safe=False)
 
 
 def get_subcategories_by_category(request):
+    """
+    Возвращает список подкатегорий по заданной категории (category_id).
+    Используется для динамического обновления формы через AJAX.
+    """
+
     category_id = request.GET.get('category_id')
     subcategories = Subcategory.objects.filter(category_id=category_id).values('id', 'name')
     return JsonResponse(list(subcategories), safe=False)
