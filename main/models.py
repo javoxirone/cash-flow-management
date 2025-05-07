@@ -10,7 +10,8 @@ class Status(models.Model):
         return self.name
 
     class Meta:
-        verbose_name_plural = "Statuses"
+        verbose_name = "Статус"
+        verbose_name_plural = "Статусы"
 
 
 class Type(models.Model):
@@ -18,6 +19,10 @@ class Type(models.Model):
 
     def __str__(self):
         return self.name
+
+    class Meta:
+        verbose_name = "Тип"
+        verbose_name_plural = "Типы"
 
 
 class Category(models.Model):
@@ -28,7 +33,8 @@ class Category(models.Model):
         return f"{self.name} ({self.type.name})"
 
     class Meta:
-        verbose_name_plural = "Categories"
+        verbose_name = "Категория"
+        verbose_name_plural = "Категории"
         unique_together = ('name', 'type')
 
 
@@ -40,7 +46,8 @@ class Subcategory(models.Model):
         return f"{self.name} ({self.category.name})"
 
     class Meta:
-        verbose_name_plural = "Subcategories"
+        verbose_name = "Подкатегория"
+        verbose_name_plural = "Подкатегории"
         unique_together = ('name', 'category')
 
 
@@ -68,3 +75,7 @@ class CashFlow(models.Model):
     def save(self, *args, **kwargs):
         self.full_clean()
         super().save(*args, **kwargs)
+
+    class Meta:
+        verbose_name = "Денежное средство"
+        verbose_name_plural = "Денежные средства"
